@@ -1,0 +1,11 @@
+# Telegram Voice Chat Music Bot dependencies (Linux VPS / Python 3.11+)
+# Also install system FFmpeg on Ubuntu/Debian:
+#   sudo apt update && sudo apt install -y ffmpeg
+
+kurigram[fast]>=2.2.27
+py-tgcalls==3.0.1
+ntgcalls>=3.0.2,<4.0.0
+yt-dlp[default]>=2026.11.23
+bgutil-ytdlp-pot-provider>=2.0.2
+httpx>=0.27.0
+python-dotenv>=1.0.1

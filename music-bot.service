@@ -1,0 +1,23 @@
+[Unit]
+Description=Telegram Group & Voice Chat Music Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/music-bot
+EnvironmentFile=/opt/music-bot/.env
+ExecStart=/opt/music-bot/.venv/bin/python /opt/music-bot/music_bot.py
+Restart=on-failure
+RestartSec=5
+KillSignal=SIGTERM
+TimeoutStopSec=15
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ReadWritePaths=/opt/music-bot/audio_cache
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,23 @@
+services:
+  bgutil-provider:
+    image: brainicism/bgutil-ytdlp-pot-provider:latest
+    container_name: vc-music-pot-provider
+    restart: unless-stopped
+    init: true
+    ports:
+      - "127.0.0.1:4416:4416"
+
+  music-bot:
+    build: .
+    container_name: tg-vc-music-bot
+    restart: unless-stopped
+    depends_on:
+      - bgutil-provider
+    env_file:
+      - .env
+    environment:
+      PO_TOKEN_SERVER: ${PO_TOKEN_SERVER:-http://bgutil-provider:4416}
+    volumes:
+      - ./audio_cache:/app/audio_cache
+      # Uncomment if using cookies.txt:
+      # - ./cookies.txt:/app/cookies.txt:ro
